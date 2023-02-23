@@ -65,7 +65,7 @@ This approach ensures correctness because it does not allow guests (threads) to 
 
 ### Efficiency
 
-While this is the most efficient protocol, it will in many cases, results in guests entering the maze (and solving it) multiple times. The run time is greatly dependent on 1) how long it takes the minotaur to choose the next guest to enter the maze, and 2) how long it takes each guest to solve the maze. In an ideal case, each guest only enters once (with the leader entering last). However, with the random nature of the problem, and enphasis on correctness, efficiency is mostly in the hands of the guests ability to solve the mazethe order in which the guests are choosen to enter the maze.
+While this is the most efficient protocol, it will in many cases, results in guests entering the maze (and solving it) multiple times. The run time is greatly dependent on 1) how long it takes the minotaur to choose the next guest to enter the maze, and 2) how long it takes each guest to solve the maze. In an ideal case, each guest only enters once (with the leader entering last). However, with the random nature of the problem, and enphasis on correctness, efficiency is mostly in the hands of the guests ability to solve the maze and the order in which the guests are choosen to enter the maze.
 
 ### Experimental evaluation
 
