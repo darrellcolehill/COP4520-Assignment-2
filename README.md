@@ -30,7 +30,7 @@ for N or ask the user to specify N at the start.
 #### Compile
 ``` javac Problem1.java ```
 #### Run
-``` java Problem1.java ```
+``` java Problem1 ```
 
 ### Correctness
 
@@ -71,7 +71,7 @@ user to specify it at the start.
 #### Compile
 ``` javac Problem2.java ```
 #### Run
-``` java Problem2.java ```
+``` java Problem2 ```
 
 ### Correctness
 
