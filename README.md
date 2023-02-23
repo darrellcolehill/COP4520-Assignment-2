@@ -17,6 +17,8 @@ the Minotaur may pick the same guests multiple times and ask them to enter the
 labyrinth. Before the party is over, the Minotaur wants to know if all of his guests have 
 had the chance to enter his labyrinth. To do so, the guests must announce that they have 
 all visited the labyrinth at least once. 
+
+
 Now the guests must come up with a strategy to let the Minotaur know that every guest 
 entered the Minotaur’s labyrinth. It is known that there is already a birthday cupcake left 
 at the labyrinth’s exit at the start of the game. How would the guests do this and not 
@@ -33,6 +35,32 @@ for N or ask the user to specify N at the start.
 ``` java Problem1 ```
 
 ### Correctness
+The key to solving this problem is by selecting a representative/leader guest (thread) that keeps track of a counter variable, while imposing rules on other non-leader guests (threads) as to how they interact with the cupcake. It is assumed that it takes some (random) amount of time to solve the maze, that the Minotaur takes some (random) amount of time to select the next guest to enter the maze, and that only one guest can interact with the cupcake at once. 
+
+Prior to starting the game the guests (threads) select one guest (thread) to be the leader and agree to only eat a cupcake once, and do the following when they reach the end of the maze. 
+
+1) If they are not the leader, then they will check if a cupcake is present and do the following:
+
+
+a) If there is a cupcake present and they have not eaten a cupcake before, then they will eat the cupcake, decide to not add another cupcake to the plate, and then leave the maze. 
+
+
+  b) If there is a cupcake present, but they have already eaten a cupcake, then they will directly leave the maze. 
+
+
+  c) If there is not a cupcake present, then the guest will simply leave the maze and not interact with the cupcake at all. 
+
+
+2) If they are the leader, then they will check if a cupcake is present and do the following:
+
+
+  a) If there is a cupcake present, then they will do nothing and simply leave the maze. 
+
+
+  b) If there is not a cupcake present, then they will keep track of the times that they have encountered an empty plate. If the number of times that they        have encountered an empty plate is less than or equal to the (number guest - 1), then the leader will announce that all people have visited the maze.
+     Otherwise, they will simply continue to keep track of the times that they have encountered the empty plate, add another cupcake to the plate, and leave      the maze. 
+  
+
 
 ### Efficiency
 
