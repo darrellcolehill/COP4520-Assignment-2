@@ -1,6 +1,6 @@
 # COP4520-Assignment-2
 
-## Problem 1: Minotaur’s Birthday Party 
+## Problem 1: Minotaur’s Birthday Party
 The Minotaur invited N guests to his birthday party. When the guests arrived, he made 
 the following announcement. 
 The guests may enter his labyrinth, one at a time and only when he invites them to do 
@@ -24,6 +24,13 @@ disappoint his generous and a bit temperamental host?
 Create a program to simulate the winning strategy (protocol) where each guest is 
 represented by one running thread. In your program you can choose a concrete number 
 for N or ask the user to specify N at the start.
+
+### How to run the solution program
+
+#### Compile
+``` javac Problem1.java ```
+#### Run
+``` java Problem1.java ```
 
 ### Correctness
 
@@ -58,6 +65,13 @@ and disadvantages.
 Implement the strategy/protocol of your choice where each guest is represented by 1 
 running thread. You can choose a concrete number for the number of guests or ask the 
 user to specify it at the start. 
+
+### How to run the solution program
+
+#### Compile
+``` javac Problem2.java ```
+#### Run
+``` java Problem2.java ```
 
 ### Correctness
 
