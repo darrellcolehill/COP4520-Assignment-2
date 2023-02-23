@@ -41,28 +41,31 @@ Prior to starting the game the guests (threads) select one guest (thread) to be 
 
 1) If they are not the leader, then they will check if a cupcake is present and do the following:
 
-
-a) If there is a cupcake present and they have not eaten a cupcake before, then they will eat the cupcake, decide to not add another cupcake to the plate, and then leave the maze. 
-
-
-  b) If there is a cupcake present, but they have already eaten a cupcake, then they will directly leave the maze. 
+    a) If there is a cupcake present and they have not eaten a cupcake before, then they will eat the cupcake, decide to not add another cupcake to the plate, and then leave the maze. 
 
 
-  c) If there is not a cupcake present, then the guest will simply leave the maze and not interact with the cupcake at all. 
+    b) If there is a cupcake present, but they have already eaten a cupcake, then they will directly leave the maze. 
+
+
+    c) If there is not a cupcake present, then the guest will simply leave the maze and not interact with the cupcake at all. 
 
 
 2) If they are the leader, then they will check if a cupcake is present and do the following:
 
 
-  a) If there is a cupcake present, then they will do nothing and simply leave the maze. 
+    a) If there is a cupcake present, then they will do nothing and simply leave the maze. 
 
 
-  b) If there is not a cupcake present, then they will keep track of the times that they have encountered an empty plate. If the number of times that they        have encountered an empty plate is less than or equal to the (number guest - 1), then the leader will announce that all people have visited the maze.
+    b) If there is not a cupcake present, then they will keep track of the times that they have encountered an empty plate. If the number of times that they        have encountered an empty plate is less than or equal to the (number guest - 1), then the leader will announce that all people have visited the maze.
      Otherwise, they will simply continue to keep track of the times that they have encountered the empty plate, add another cupcake to the plate, and leave      the maze. 
+     
+This approach ensures correctness because it does not allow guests (threads) to communicate amongst eachother, while still providing a way for the leader to correctly state that each guest has visited the maze, by simply counting the times that a cupcake is not present when the leader enters the end of the maze.
   
 
 
 ### Efficiency
+
+While this is the most efficient protocol, it will in many cases, results in guests entering the maze (and solving it) multiple times. The run time is greatly dependent on 1) how long it takes the minotaur to choose the next guest to enter the maze, and 2) how long it takes each guest to solve the maze. In an ideal case, each guest only enters once (with the leader entering last). However, with the random nature of the problem, and enphasis on correctness, efficiency is mostly in the hands of the guests ability to solve the mazethe order in which the guests are choosen to enter the maze.
 
 ### Experimental evaluation
 
