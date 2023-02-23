@@ -28,9 +28,11 @@ public class Problem1 {
         public boolean hasEatenCake = false;
         public boolean isLeader = false;
         public int visitCount = 0;
+        public int threadID;
     
-        public Guest(boolean isLeader){
+        public Guest(boolean isLeader, int threadID){
             this.isLeader = isLeader;
+            this.threadID = threadID;
         }
     
         public void run() {
@@ -42,12 +44,14 @@ public class Problem1 {
             this.visitCount += 1;
 
             if(isLeader == true){
+                System.out.println("Leader has entered the end of the maze. visit count =  " + visitCount + " cupcake state = " + cupcakeIsPresent);
                 if(visitCount >= numberOfGuest - 1) {
                     // Announces that all guest have reached the end of the maze here
                     System.out.println("announcing that all guest have entered the maze... ");
                     allGuesthaveVisited = true;
                 }
                 else if(cupcakeIsPresent == false) {
+                    System.out.println("Leader is placeing another cupcake on the plate.");
                     updateCupcakeStatus(); // sets another cupcake down on the plate.
                 }
                 // else, do nothing because the leader or another guest has been choosen another time. 
@@ -55,6 +59,7 @@ public class Problem1 {
             else
             {
                 if(cupcakeIsPresent == true && hasEatenCake == false) {
+                    System.out.println("Guest "+ threadID + " is eating the cupcake");
                     updateCupcakeStatus(); // eats the cupcake
                     hasEatenCake = true;
                 }
@@ -86,9 +91,9 @@ public class Problem1 {
     public static void main(String[] args) {
 
         Guest guests[] = new Guest[numberOfGuest];
-        guests[0] = new Guest(true);
+        guests[0] = new Guest(true, 0);
         for(int i = 1; i < numberOfGuest; i++) {
-            guests[i] = new Guest(false);
+            guests[i] = new Guest(false, i);
         }
 
         // Loops until a guest announces that all guest have visited the maze. 
@@ -104,10 +109,6 @@ public class Problem1 {
                 else 
                 {
                     System.out.print("\nSelecting non-leader " +  random_guest + ".\n"); // NOTE: these prints are to hopefully help the TA while grading
-                }
-    
-                if(guests[random_guest].visitCount == 0) {
-                    System.out.print("this is their first time visiting the maze\n");
                 }
 
                 if(guests[random_guest].getState().equals(Thread.State.TERMINATED) == false) 
