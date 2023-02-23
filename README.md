@@ -69,6 +69,10 @@ While this is the most efficient protocol, it will in many cases, results in gue
 
 ### Experimental evaluation
 
+Evaluation was conducted by varying the number of guest(s) and by analyzing the console output and final report generated at the end of the programs execution. As expected, the program stopped after each non-leader solved the maze, and each user typically solved the maze multiple times. 
+
+Other factors examined where the time taken by the minotaur to select another guest, and the time taken for the guest to sovle the maze, howver, varying these values did not effect the expected output or produce any outliers. 
+
 
 ## Problem 2: Minotaur’s Crystal Vase
 The Minotaur decided to show his favorite crystal vase to his guests in a dedicated 
@@ -106,6 +110,59 @@ user to specify it at the start.
 
 ### Correctness
 
+To Examine correctness, we must look at the pros and cons of each strategy.
+
+#### Strategy 1 Pros
+
+1) It allows the guests to have the most freedom to look at other things in the castle and enjoy the party.
+2) It is the easiest solution to implement
+3) It does not put any responsibility on the user besides simply checking if the door.
+
+#### Strategy 1 Cons
+
+1) It can be unfair. One user could continuly go in and out of the room, and not allow anyone else to go in. 
+2) It does not resolve the bottle neck issue, instead, it simply moves the bottle neck from the room, to directly outside the door. I.e. all the guests could be tring to enter the door all at once. 
+
+
+#### Strategy 2 Pros
+
+1) Helps to reduce the bottle neck issue aorund the door. 
+2) Allows users to quickly see that the room is not available, and then proceed to look at other things in the castle or enjoy the party. 
+
+
+#### Strategy 2 Cons
+
+1) Forces users to interact with a sign and correctly update it's status. 
+2) While it can reduce the bottle neck, it does not elliminate it completely, as multiple people could try to rush the door at once once the sign is set to AVAILABLE.
+3) Can be unfair. I.e., there is no rules set in place as to who gets to see the vase next. 
+
+
+#### Strategy 3 Pros
+
+1) The guests can now fairly view the vase. If someone wants to view the vase, they have to enter the back of the line and wait their turn. 
+2) Less bottle neck around the door, and instead, they are simply waiting in line for their turn. 
+
+#### Strategy 3 Cons
+
+1) It does not allow for users to view anything else in the castle while they are waiting in line. 
+2) Maintaining the line requires more overhead. 
+3) A guest could wait in line and never be able to see the vase, all while missing out on the rest of the castle. 
+
+#### Proposed Strategy
+
+The Strategy I decided to implement was Strategy 3. It results in the most fairness, and decreases the chances of their being a deadlock caused by one guest constantly going in and out of the room without giving the other guests a chance. 
+
+
 ### Efficiency
 
+The efficiency of the simulation is greatly determined by how long the user views the vase, and how many guests enter the queue to see the vase at once. However, since it is implemented as a queue, it allows for a much better chance that each guests will see the vase at least once in a somewhat reasonable amount of time. 
+
 ### Experimental evaluation
+
+To examine the simulation, the output was examined. Whenever a guest attempted to acquire the semaphore (enters the queue), that guest (thread) prints "Guest <GUEST_ID> entered the queue --->" and when a guest leaves the showroom, it prints "Guest <GUEST_ID> is leaving the showroom <--", where <GUEST_ID> is assigned to the thread upon creating the guest object. 
+
+By examining the the output, we can see that different threads all attempt to enter the queue (acquire the semaphore) at different times, however, the FIFO order is still maintained, and can be verified by checking the output as well. 
+
+To obtain more variations for the simulation, the maxTimeToLookAtVase, simulationTimeInMilliSeconds, and numberOfGuest variables wher all changed. maxTimeToLookAtVase determined how long a guest could remain in the showroom, simulationTimeInMilliSeconds determined how long to continue the simulation, and numberOfGues determined how many guests (threads) participated in the simulation. 
+
+Throughout testing, the results remained consistent and the FIFO structure remained true. 
