@@ -158,3 +158,11 @@ The Strategy I decided to implement was Strategy 3. It results in the most fairn
 The efficiency of the simulation is greatly determined by how long the user views the vase, and how many guests enter the queue to see the vase at once. However, since it is implemented as a queue, it allows for a much better chance that each guests will see the vase at least once in a somewhat reasonable amount of time. 
 
 ### Experimental evaluation
+
+To examine the simulation, the output was examined. Whenever a guest attempted to acquire the semaphore (enters the queue), that guest (thread) prints "Guest <GUEST_ID> entered the queue --->" and when a guest leaves the showroom, it prints "Guest <GUEST_ID> is leaving the showroom <--", where <GUEST_ID> is assigned to the thread upon creating the guest object. 
+
+By examining the the output, we can see that different threads all attempt to enter the queue (acquire the semaphore) at different times, however, the FIFO order is still maintained, and can be verified by checking the output as well. 
+
+To obtain more variations for the simulation, the maxTimeToLookAtVase, simulationTimeInMilliSeconds, and numberOfGuest variables wher all changed. maxTimeToLookAtVase determined how long a guest could remain in the showroom, simulationTimeInMilliSeconds determined how long to continue the simulation, and numberOfGues determined how many guests (threads) participated in the simulation. 
+
+Throughout testing, the results remained consistent and the FIFO structure remained true. 
