@@ -69,6 +69,10 @@ While this is the most efficient protocol, it will in many cases, results in gue
 
 ### Experimental evaluation
 
+Evaluation was conducted by varying the number of guest(s) and by analyzing the console output and final report generated at the end of the programs execution. As expected, the program stopped after each non-leader solved the maze, and each user typically solved the maze multiple times. 
+
+Other factors examined where the time taken by the minotaur to select another guest, and the time taken for the guest to sovle the maze, howver, varying these values did not effect the expected output or produce any outliers. 
+
 
 ## Problem 2: Minotaur’s Crystal Vase
 The Minotaur decided to show his favorite crystal vase to his guests in a dedicated 
