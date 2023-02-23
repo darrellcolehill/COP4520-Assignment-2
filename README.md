@@ -110,6 +110,51 @@ user to specify it at the start.
 
 ### Correctness
 
+To Examine correctness, we must look at the pros and cons of each strategy.
+
+#### Strategy 1 Pros
+
+1) It allows the guests to have the most freedom to look at other things in the castle and enjoy the party.
+2) It is the easiest solution to implement
+3) It does not put any responsibility on the user besides simply checking if the door.
+
+#### Strategy 1 Cons
+
+1) It can be unfair. One user could continuly go in and out of the room, and not allow anyone else to go in. 
+2) It does not resolve the bottle neck issue, instead, it simply moves the bottle neck from the room, to directly outside the door. I.e. all the guests could be tring to enter the door all at once. 
+
+
+#### Strategy 2 Pros
+
+1) Helps to reduce the bottle neck issue aorund the door. 
+2) Allows users to quickly see that the room is not available, and then proceed to look at other things in the castle or enjoy the party. 
+
+
+#### Strategy 2 Cons
+
+1) Forces users to interact with a sign and correctly update it's status. 
+2) While it can reduce the bottle neck, it does not elliminate it completely, as multiple people could try to rush the door at once once the sign is set to AVAILABLE.
+3) Can be unfair. I.e., there is no rules set in place as to who gets to see the vase next. 
+
+
+#### Strategy 3 Pros
+
+1) The guests can now fairly view the vase. If someone wants to view the vase, they have to enter the back of the line and wait their turn. 
+2) Less bottle neck around the door, and instead, they are simply waiting in line for their turn. 
+
+#### Strategy 3 Cons
+
+1) It does not allow for users to view anything else in the castle while they are waiting in line. 
+2) Maintaining the line requires more overhead. 
+3) A guest could wait in line and never be able to see the vase, all while missing out on the rest of the castle. 
+
+#### Proposed Strategy
+
+The Strategy I decided to implement was Strategy 3. It results in the most fairness, and decreases the chances of their being a deadlock caused by one guest constantly going in and out of the room without giving the other guests a chance. 
+
+
 ### Efficiency
+
+The efficiency of the simulation is greatly determined by how long the user views the vase, and how many guests enter the queue to see the vase at once. However, since it is implemented as a queue, it allows for a much better chance that each guests will see the vase at least once in a somewhat reasonable amount of time. 
 
 ### Experimental evaluation
